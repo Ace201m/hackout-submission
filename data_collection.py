@@ -3,6 +3,10 @@ from src.model.Food import Food
 import pickle
 
 import requests
+from pprint import pprint
+
+
+myDict = {}
 
 if __name__ == "__main__":
 
