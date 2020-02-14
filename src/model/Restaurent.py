@@ -40,15 +40,13 @@ class Restaurent:
         self.city = tempDict['address']['addressRegion']
         self.image = tempDict['imagepprint']
         self.cuisine = tempDict['serves']
-        self.rating = rating
-        self.rate_count = rating_count
+        self.rating = tempDict['aggregateRating']['ratingValue']
+        self.rate_count = tempDict['aggregateRating']['ratingCount']
         self.locality = locality
         self.price_range = price_range
 
     def __str__(self):
         return self.name + ", "+ self.locality + ", " + self.city
-
-    def get(link):
         
 
 

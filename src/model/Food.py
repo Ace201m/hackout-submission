@@ -1,6 +1,3 @@
-
-
-
 class Food:
 
     def __init__(self, name, price, isveg, category, description, rest_list):
