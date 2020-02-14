@@ -1,3 +1,5 @@
+import random
+
 ## given foodlist, it gives me 4 options and i would select one of them till it gives me dishes
 
 def recommend(foodlist):
@@ -45,6 +47,9 @@ def recommend(foodlist):
                 tempTempList.append(category)
 
         tempList = tempTempList
+        random.shuffle(tempList)
+        tempList = tempList[-6:]
+
         # select from optins
         print("Select option -")
         for i in range(len(tempList)):

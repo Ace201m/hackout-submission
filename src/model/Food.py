@@ -23,16 +23,21 @@ class Food:
                 cats.append(word)
         self.category = ' '.join(cats)
 
-        together_cats = ['main course']
+        self.category = re.sub(r'&#39', '\'', self.category)
+        self.category = re.sub(r'[^0-9a-zA-Z ]+', '', self.category).split()
+
+        together_cats = ['main course', 'do pyaza']
+        self.category = '#'.join(self.category)
         
         for items in together_cats:
-            if self.only_category.strip().lower()==items:
-                self.category = self.name.lower()
-                self.category += ' ' + items
+            temp_item = re.sub(' ', '#', items)
+            if temp_item in self.category:
+
+                self.category = re.sub(temp_item, items, self.category)
                 break
 
-        self.category = re.sub(r'[^0-9a-zA-Z ]+', '', self.category)
-        self.category = re.sub(' +', ' ', self.category).split()
+        self.category = self.category.split('#')
+
 
     def getCategory(self):
         return self.category
@@ -41,4 +46,4 @@ class Food:
         return self.isveg
 
     def __str__(self):
-        return self.name + ', from-'+self.rest
+        return self.name + ', from-'+self.rest + " " + self.only_category
