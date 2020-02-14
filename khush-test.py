@@ -20,4 +20,5 @@ data = json.loads(str(res[4])[104:-(10 + 171 + 197 + 1637)])
 print(data['menu'].keys())
 food_items = data['menu']['items']
 
-pprint(food_items)
+for i in food_items:
+    print(i)
