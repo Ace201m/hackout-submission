@@ -14,13 +14,24 @@ def recommend(foodlist):
         
         tempList = []
         for a in tempDict:
-            tempList.append[tempDict[a]]
+            tempList.append(tempDict[a])
         
         tempList.sort()
-        tempList=tempList[-4:]
+        tempList=tempList[-5:]
 
-        selected
-                
+        # select from optins
+        print("Select option -")
+        for i in range(len(tempList)):
+            print(tempList[i],str(i))
+        print("Give index of your selection")
+        selected = str(input())
 
+        selected = tempList[selected]
 
         # refine after selecting optin
+        tempRes = []
+        for food in res:
+            if selected in food.getCategory():
+                tempRes.append(food)
+        res = tempRes
+    print(res)
