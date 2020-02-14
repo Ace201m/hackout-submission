@@ -15,5 +15,8 @@ class Food:
     def getCategory(self):
         return self.category
 
+    def getIsVeg(self):
+        return self.isveg
+
     def __str__(self):
         return self.name + ', from-'+self.rest

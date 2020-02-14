@@ -2,6 +2,23 @@
 
 def recommend(foodlist):
     res = foodlist
+    # ask for veg non veg
+    print("Select preference")
+    print("1 for only veg, 2 for both and 3 for only non veg")
+    a = int(input())
+    if a!=2:
+        if a==3:
+            tempList = []
+            for food in res:
+                if food.getIsVeg()==0:
+                    tempList.append(food)
+        if a==1:
+            tempList = []
+            for food in res:
+                if food.getIsVeg()==1:
+                    tempList.append(food)
+        res = tempList
+        
     excep = ['',' ']
     while(len(res)>10):
         # get options
