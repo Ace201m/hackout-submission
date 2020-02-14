@@ -1,5 +1,10 @@
 # hackout-submission
 
 
-4 - rest info
-5 - food info
+Team Mayo,
+EatOut - Chat based food recommender
+
+Python
+
+install requirements.txt
+run file iAmFeelingHungry.py
