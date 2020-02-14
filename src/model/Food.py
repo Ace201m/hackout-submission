@@ -16,4 +16,4 @@ class Food:
         return self.category
 
     def __str__(self):
-        return self.name 
+        return self.name + ', from-'+self.rest
