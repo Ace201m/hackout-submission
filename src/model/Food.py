@@ -7,6 +7,12 @@ class Food:
         self.category = food_dict['category']
         self.description = food_dict['description']
         self.rest = rest_name
+    
+    def getName(self):
+        return self.name
+
+    def getCategory(self):
+        return self.category
 
     def __str__(self):
         return self.name 
