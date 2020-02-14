@@ -4,7 +4,8 @@ class Food:
         self.name = food_dict['name']
         self.price = food_dict['price']/100
         self.isveg = food_dict['isVeg']
-        self.category = food_dict['category']
+        self.category = food_dict['category']+' '+food_dict['name']
+        self.category = self.category.split(' ')
         self.description = food_dict['description']
         self.rest = rest_name
     
