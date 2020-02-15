@@ -93,7 +93,10 @@ def get_tasks():
         tempList = tempList[-4:]
 
         data = {'options':tempList}
-    return jsonify(data)
+    jsdata = jsonify(data)
+    jsdata.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
+    jsdata.headers['Access-Control-Allow-Credentials'] = True
+    return jsdata
 
 if __name__ == '__main__':
     app.run(debug=True)
