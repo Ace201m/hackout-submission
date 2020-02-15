@@ -11,6 +11,9 @@ class Food:
         self.cleanCategory()
         self.description = food_dict['description']
         self.rest = rest_name
+
+    def getImage(self):
+        return self.rest.getImage()
     
     def getName(self):
         return self.name
@@ -46,4 +49,4 @@ class Food:
         return self.isveg
 
     def __str__(self):
-        return self.name + ', from-'+self.rest + " " + self.only_category
+        return self.name + ', from-'+self.rest
