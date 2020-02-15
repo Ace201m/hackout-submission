@@ -30,7 +30,7 @@ class Food:
         self.category = '#'.join(self.category)
         
         for items in together_cats:
-            temp_item = re.sub(' ', '#', items)
+            temp_item = re.sub(' ', '', items)
             if temp_item in self.category:
 
                 self.category = re.sub(temp_item, items, self.category)
