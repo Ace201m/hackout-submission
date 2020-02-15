@@ -96,7 +96,10 @@ export default {
 
       for(var a in this.q){
         queryAddOn += this.q[a].replace(' ','#');
-        queryAddOn += '*';
+        if(a!=this.q.length-1){
+          queryAddOn += '*';
+        }
+          
       }
 
       alert('http://localhost:5000/recommender?isveg='+this.isVeg+'&query='+queryAddOn);
