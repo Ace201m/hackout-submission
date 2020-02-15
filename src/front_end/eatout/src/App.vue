@@ -12,8 +12,10 @@ import appFooter from './components/footer.vue'
 import appBody from './components/body.vue'
 import VueResource from 'vue-resource'
 import Vue from 'vue'
+import axios from 'axios'
 
 Vue.use(VueResource)
+Vue.use(axios)
 
 export default {
   name: 'App',

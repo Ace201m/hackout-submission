@@ -12,13 +12,18 @@
     
     <button class="btn" v-if='initial' @click="initialize()" >Start!</button>
     
-    <template v-if="!initial && isVeg==''">
-    <button class="btn"  v-for='(category, index) in categories' :key='index' @click="setIsVeg(index)" >{{ category }}</button>
+    <template v-if="!initial && isVeg==''" >
+      <template v-for='category in categories'>
+    <button class="btn"   :key='category' @click="setIsVeg(category)" >{{ category }}</button>
+    </template>
     </template>
 
     <template v-if="!initial && isVeg!=''">
-    <button class="btn"  v-for='(category, index) in categories' :key='index' @click="getSomething(index)" >{{ category }}</button>
+      <template v-for='category in categories'>
+    <button class="btn" :key='category' @click="getSomething(category)" >{{ category }}</button>
     </template>
+    </template>
+
   </div>
 </template>
 
@@ -46,6 +51,7 @@ export default {
       this.$http.get('https://reqres.in/api/products/3').then(
         (data) => {
           this.messages.push(data);
+          console.log("This runs");
         }
       );
       this.question=""
@@ -55,29 +61,26 @@ export default {
       this.categories = ['Veg', 'Both', 'Non veg'];
       this.initial = false;
     },
-    setIsVeg (index) {
-      
-      this.isVeg = this.categories[index];
+    setIsVeg (inp) {
+      this.isVeg = inp;
       this.isVeg = this.isVeg.replace(/\s/g,'').toLowerCase();
       var newMessage = {
         fromBot: false,
-        messageText: "You selected "+this.categories[index]
+        messageText: "You selected "+inp
       }
       this.messages.push(newMessage);
 
       // send request
 
-      var queryLink = 'http://10.42.0.1:5000/recommender'+"?isveg="+this.isVeg+'&query=';
-
-      this.$http.get(queryLink).then(
-        (data) => {
-          
-          console.log(data);
-
-          alert(data);
-          this.messages.push(newMessage);
+      this.$http.get('http://localhost:5000/recommender?isveg='+this.isVeg+'&query=').then(
+        (response) => {
+          console.log("Success");
+          console.log(response);
         }
-      );
+      ).catch( response => {
+        console.log(response);
+      });
+      
     }
   },
   computed: {
