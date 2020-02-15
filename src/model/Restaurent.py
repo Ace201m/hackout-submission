@@ -35,7 +35,7 @@ class Restaurent:
         data = json.loads(str(res[4])[104:-(2015)])
         temp_food_items = data['menu']['items']
         for i in temp_food_items:
-            newFoodItem = Food(temp_food_items[i], self)
+            newFoodItem = Food(temp_food_items[i], self.name, self.image)
             self.food_items.append(newFoodItem)
 
     def getImage(self):
