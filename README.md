@@ -1,3 +1,4 @@
+![](https://imgur.com/hrNlqDm.png)
 #  Eatout
 
 Eatout is a  Chat based food recommender webapp. 
@@ -24,5 +25,6 @@ Due to lot of options and lot of restuarents around us the selection of food tha
 Note : If the python server is not running on ```localhost:5000``` then change the base URL in ```eatout/src/components/body.vue``` line no. 41 appropriately.
 
 ### Demo Images
- 
-!()
+
+![](https://imgur.com/kVX0fOi.png)
+![](https://imgur.com/NDqyhAh.png)
