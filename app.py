@@ -1,4 +1,4 @@
-#!/home/khush/.local/share/virtualenvs/hackout-submission-KUwmPiwG/bin/python
+#!/home/ace201m/anaconda/bin//python
 from flask import Flask, jsonify, request
 import re
 import random
@@ -11,7 +11,7 @@ app = Flask(__name__)
 @app.route('/recommender', methods=['GET'])
 def get_tasks():
     filters = request.args['query']
-    filters = re.sub('_', ' ', filters)
+    filters = re.sub('#', ' ', filters)
     filters = filters.split('*')
 
     if len(filters[0])==0:
@@ -58,6 +58,9 @@ def get_tasks():
         print(len(res))
         if len(res)<=10:
             data = {'result':[]}
+            for items in res:
+                data['result'].append([str(items), items.getImage()])
+
             jsdata = jsonify(data)
             jsdata.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
             jsdata.headers['Access-Control-Allow-Credentials'] = True
