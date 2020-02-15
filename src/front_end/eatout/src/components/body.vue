@@ -105,8 +105,10 @@ export default {
         (response) => {
           
           if('result' in response.body){
+
             this.question = "complete";
-            console.log(response.body.result)
+            console.log(response);
+            console.log(response.body.result);
             var nnnewMessage = {
               messageText: response.body.result,
               fromBot: true,
