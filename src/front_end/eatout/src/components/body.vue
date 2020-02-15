@@ -46,16 +46,6 @@ export default {
     }
   },
   methods: {
-    getSomething (index) {
-      console.log(index);
-      this.$http.get('https://reqres.in/api/products/3').then(
-        (data) => {
-          this.messages.push(data);
-          console.log("This runs");
-        }
-      );
-      this.question=""
-    },
     initialize () {
       this.question = "What would you prefer?";
       this.categories = ['Veg', 'Both', 'Non veg'];
@@ -74,13 +64,63 @@ export default {
 
       this.$http.get('http://localhost:5000/recommender?isveg='+this.isVeg+'&query=').then(
         (response) => {
-          console.log("Success");
-          console.log(response);
+          var nnewMessage = {
+            messageText: "What would you like to have?",
+            fromBot: true,
+          }
+
+          this.question = "Select from given options -";          
+          var temp = [];
+          for(var i in response.body.options){
+            temp.push(response.body.options[i]);
+          }
+          this.categories = temp;
+          this.messages.push(nnewMessage);
+
+
         }
       ).catch( response => {
         console.log(response);
       });
+    },
+
+    getSomething (category) {
+      this.q.push(category);
       
+      this.messages.push({
+        fromBot: false,
+        messageText: "You selected "+category
+      });
+
+      var queryAddOn = '';
+
+      for(var a in this.q){
+        queryAddOn += this.q[a].replace(' ','#');
+        queryAddOn += '*';
+      }
+
+      alert('http://localhost:5000/recommender?isveg='+this.isVeg+'&query='+queryAddOn);
+      this.$http.get('http://localhost:5000/recommender?isveg='+this.isVeg+'&query='+queryAddOn).then(
+        (response) => {
+
+          var nnewMessage = {
+            messageText: "What would you like to have?",
+            fromBot: true,
+          }
+
+          this.question = "Select from given options -";          
+          var temp = [];
+          for(var i in response.body.options){
+            temp.push(response.body.options[i]);
+          }
+          this.categories = temp;
+          this.messages.push(nnewMessage);
+
+
+        }
+      ).catch( response => {
+        console.log(response);
+      });
     }
   },
   computed: {
