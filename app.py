@@ -1,4 +1,4 @@
-#!/home/ace201m/anaconda/bin//python
+#!/home/khush/.local/share/virtualenvs/hackout-submission-KUwmPiwG/bin/python
 from flask import Flask, jsonify, request
 import re
 import random

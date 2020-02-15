@@ -3,8 +3,11 @@
   <div @click="fromBot=!fromBot" v-bind:class="{ message_body: true, l: fromBot, r: !fromBot }" >
   
     <div v-if='typeof(message.messageText)==typeof([1,2])'>
-      <div v-for="res in message.messageText" :key="res"> 
-        {{ res }}
+      <div v-for="(res, index) in message.messageText" :key="res"> 
+        <p>{{ 1+index }}. {{ res[0] }}</p>
+         <img style="max-height:100px;" :src='res[1]'>
+
+        
       </div>
     </div>
     <div v-else>
