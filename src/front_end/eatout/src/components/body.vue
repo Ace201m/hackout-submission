@@ -56,7 +56,7 @@ export default {
       this.isVeg = this.isVeg.replace(/\s/g,'').toLowerCase();
       var newMessage = {
         fromBot: false,
-        messageText: "You selected "+inp
+        messageText: "You selected "+inp+'.'
       }
       this.messages.push(newMessage);
 
@@ -89,24 +89,32 @@ export default {
       
       this.messages.push({
         fromBot: false,
-        messageText: "You selected "+category
+        messageText: "You selected "+category+'.'
       });
 
       var queryAddOn = '';
 
       for(var a in this.q){
-        queryAddOn += this.q[a].replace(' ','#');
+        queryAddOn += this.q[a].replace(' ','_');
         if(a!=this.q.length-1){
           queryAddOn += '*';
         }
           
       }
-
-      alert('http://localhost:5000/recommender?isveg='+this.isVeg+'&query='+queryAddOn);
       this.$http.get('http://localhost:5000/recommender?isveg='+this.isVeg+'&query='+queryAddOn).then(
         (response) => {
-
-          var nnewMessage = {
+          
+          if('result' in response.body){
+            this.question = "complete";
+            var nnnewMessage = {
+              messageText: response.body.result,
+              fromBot: true,
+            };
+            this.messages.push(nnnewMessage);
+            this.categories = [];
+          }
+          else{
+            var nnewMessage = {
             messageText: "What would you like to have?",
             fromBot: true,
           }
@@ -118,6 +126,8 @@ export default {
           }
           this.categories = temp;
           this.messages.push(nnewMessage);
+          }
+          
 
 
         }
@@ -130,7 +140,8 @@ export default {
     getMessages () {
       return this.messages;
     }
-  }
+  },
+  
 }
 </script>
 

@@ -11,7 +11,7 @@ app = Flask(__name__)
 @app.route('/recommender', methods=['GET'])
 def get_tasks():
     filters = request.args['query']
-    filters = re.sub('#', ' ', filters)
+    filters = re.sub('_', ' ', filters)
     filters = filters.split('*')
 
     if len(filters[0])==0:
@@ -61,7 +61,10 @@ def get_tasks():
             for items in res:
                 data['result'].append(str(items))
 
-            return jsonify(data)
+            jsdata = jsonify(data)
+            jsdata.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
+            jsdata.headers['Access-Control-Allow-Credentials'] = True
+            return jsdata
 
         excep = ['',' ']
         excep.extend(filters)

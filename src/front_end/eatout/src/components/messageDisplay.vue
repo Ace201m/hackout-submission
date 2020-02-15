@@ -1,6 +1,8 @@
 <template>
   <div>
   <div @click="fromBot=!fromBot" v-bind:class="{ message_body: true, l: fromBot, r: !fromBot }" >
+  
+    
     {{ message.messageText }}
     
   </div>
