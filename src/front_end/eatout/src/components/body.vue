@@ -38,6 +38,7 @@ export default {
   data: ()=>{
     return {
       messages: [],
+      baseURL: 'http://localhost:5000/recommender?isveg=',
       q: [],
       isVeg: '',
       categories: ['Start!'],
@@ -62,7 +63,7 @@ export default {
 
       // send request
 
-      this.$http.get('http://localhost:5000/recommender?isveg='+this.isVeg+'&query=').then(
+      this.$http.get(this.baseURL+this.isVeg+'&query=').then(
         (response) => {
           var nnewMessage = {
             messageText: "What would you like to have?",
@@ -101,7 +102,7 @@ export default {
         }
           
       }
-      this.$http.get('http://localhost:5000/recommender?isveg='+this.isVeg+'&query='+queryAddOn).then(
+      this.$http.get(this.baseURL+this.isVeg+'&query='+queryAddOn).then(
         (response) => {
           
           if('result' in response.body){
