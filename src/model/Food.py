@@ -2,7 +2,7 @@ import re
 
 class Food:
 
-    def __init__(self, food_dict, rest_name):
+    def __init__(self, food_dict, rest_name, rest_image):
         self.name = food_dict['name']
         self.price = food_dict['price']/100
         self.isveg = food_dict['isVeg']
@@ -11,9 +11,10 @@ class Food:
         self.cleanCategory()
         self.description = food_dict['description']
         self.rest = rest_name
+        self.rest_image = rest_image
 
     def getImage(self):
-        return self.rest.getImage()
+        return self.rest_image
     
     def getName(self):
         return self.name
@@ -37,7 +38,6 @@ class Food:
             if temp_item in self.category:
 
                 self.category = re.sub(temp_item, items, self.category)
-                break
 
         self.category = self.category.split('#')
 
