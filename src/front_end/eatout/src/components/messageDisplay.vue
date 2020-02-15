@@ -2,8 +2,15 @@
   <div>
   <div @click="fromBot=!fromBot" v-bind:class="{ message_body: true, l: fromBot, r: !fromBot }" >
   
+    <div v-if='typeof(message.messageText)==typeof([1,2])'>
+      <div v-for="res in message.messageText" :key="res"> 
+        {{ res }}
+      </div>
+    </div>
+    <div v-else>
+      {{ message.messageText }}
+    </div>
     
-    {{ message.messageText }}
     
   </div>
   </div>

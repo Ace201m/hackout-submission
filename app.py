@@ -58,9 +58,6 @@ def get_tasks():
         print(len(res))
         if len(res)<=10:
             data = {'result':[]}
-            for items in res:
-                data['result'].append([str(items), items.getImage()])
-
             jsdata = jsonify(data)
             jsdata.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
             jsdata.headers['Access-Control-Allow-Credentials'] = True
